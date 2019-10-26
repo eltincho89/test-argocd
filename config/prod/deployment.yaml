@@ -1,20 +1,27 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1 # Changed from apps/v1
+kind: Rollout # Changed from Deployment
+# --- Everything below this comment is the same as a deployment ---
 metadata:
   name: test
 spec:
-  replicas: 5
-  revisionHistoryLimit: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: test
+     app: test
   template:
     metadata:
       labels:
         app: test
     spec:
       containers:
-      - image: eltincho89/argo-poc-x11:3.0
-        name: test
+      - name: test
+        image: eltincho89/argo-poc-x11:3.0
         ports:
         - containerPort: 80
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+# --- Everything above this comment are the same as a deployment ---
+    blueGreen: # A new field for the Blue Green strategy options
+      previewService: my-service-preview # Reference to a service
+      activeService: my-service-active # Reference to a service
