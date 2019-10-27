@@ -2,26 +2,32 @@ apiVersion: argoproj.io/v1alpha1 # Changed from apps/v1
 kind: Rollout # Changed from Deployment
 # --- Everything below this comment is the same as a deployment ---
 metadata:
-  name: test
+  name: example-rollout
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
-     app: test
+     app: nginx
   template:
     metadata:
       labels:
-        app: test
+        app: nginx
     spec:
       containers:
-      - name: test
-        image: eltincho89/argo-poc-x11:3.0
-        ports:
-        - containerPort: 80
+      - name: nginx
+        image: nginx:1.15.4
+    ports:
+    - containerPort: 80
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
 # --- Everything above this comment are the same as a deployment ---
-    blueGreen: # A new field for the Blue Green strategy options
-      previewService: my-service-preview # Reference to a service
-      activeService: my-service-active # Reference to a service
+    canary: # A new field for configurable Canary options
+      maxSurge: "10%"
+      maxUnavailable: 0
+      steps:
+      - setWeight: 10
+      - pause:
+          duration: 30 #seconds
+      - setWeight: 50
+      - pause: {}
