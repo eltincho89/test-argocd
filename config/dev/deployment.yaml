@@ -25,7 +25,4 @@ spec:
     canary: # A new field that used to provide configurable options for a Canary strategy
       steps:
       - setWeight: 20
-      - pause: 
-        duration: 10
-      - setWeight: 0
       - pause: {}
