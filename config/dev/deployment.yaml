@@ -23,6 +23,6 @@ spec:
   strategy:
   # ----- Everything above this comment are the same as a deployment -----
     blueGreen: 
-      activeService: active-service
-      previewService: preview-service
+      activeService: test
+      previewService: test1
       autoPromotionEnabled: false
