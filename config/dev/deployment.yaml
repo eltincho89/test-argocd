@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: test
-        image: eltincho89/argo-poc-x11:4.0
+        image: eltincho89/argo-poc-x11:5.0
         ports:
         - containerPort: 80
   minReadySeconds: 30
