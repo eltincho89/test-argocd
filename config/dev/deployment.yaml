@@ -4,7 +4,7 @@ kind: Rollout # Changed from Deployment
 metadata:
   name: test
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: test
