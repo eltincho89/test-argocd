@@ -22,7 +22,7 @@ spec:
   revisionHistoryLimit: 3
   strategy:
   # ----- Everything above this comment are the same as a deployment -----
-    canary: # A new field that used to provide configurable options for a Canary strategy
-      steps:
-      - setWeight: 20
-      - pause: {}
+    blueGreen: 
+      activeService: active-service
+      previewService: preview-service
+      autoPromotionEnabled: false
