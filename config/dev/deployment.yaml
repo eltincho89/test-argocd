@@ -16,6 +16,7 @@ spec:
       containers:
       - name: test
         image: eltincho89/argo-poc-x11:dev
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
   minReadySeconds: 30
