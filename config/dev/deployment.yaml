@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: test
-        image: eltincho89/argo-poc-x11:dev
+        image: eltincho89/argo-poc-x11:12.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
